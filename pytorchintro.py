@@ -6,15 +6,15 @@ import matplotlib.pyplot as plt     # for plotting absolutely anything
 from mpl_toolkits.mplot3d import Axes3D     # for plotting 3D graphs
 
 # define hyperparameters as needed
-n = 2       # number of features e.g. number of windows, number of rooms
-m = 50     # number of training examples, e.g. the number of windows and rooms was measured for m houses
-
 epochs = 100    # how many times do we want to run through the data to train our model
 lr = 0.05        # what proportion of our gradient do we want to update our parameters by
 
+n = 2       # number of features e.g. number of windows, number of rooms
+m = 50     # number of training examples, e.g. the number of windows and rooms was measured for m houses
+
 #create dataset and variables - built in models use one row per data point rather than one column
 X = Variable(torch.rand(m, n))
-Y = Variable(2*X.data[:,0] + 1.6*X.data[:,1] + 1)
+Y = Variable(2*X.data[:,0] + 6*X.data[:,1] + 0.1)
 
 # create a figure
 plt.ion()
@@ -94,7 +94,7 @@ for epoch in range(epochs):
     s.remove() # remove the 3d surface plot object
 
 #use model to predict new value
-v = Variable(torch.Tensor([[4, 0]])) # the tensore needs to be made a variable
+v = Variable(torch.Tensor([[4, 0]])) # the tensor needs to be made a variable
 print('Predict [4, 0]: ', m.forward(v).data[0][0]) # put v forward through the model
 
 # save variables for which rg =True
